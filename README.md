@@ -17,9 +17,11 @@ We can associate with each histogram an Equivalent Circle with its center in C =
 If the histogram is concentrated (small value of variance) and far from the neutral axis (high value of µ and Dσ), the colors of the image are confined to a small region. This means we could be in presence of a cast.
 If the value of color cast coefficient Dσ  is greater than 0, we will apply the color cast correction algorithm to rectify the image, otherwise we will terminate the process.
 
-# Color Cast Detection
+# Color Cast Correction
 The idea for this algorithm is based on the technique of chromatic adaptation, wherein we will approximate the existing illumination of the image and perform illumination transformation to D-65 illuminant using Von Kries, Bradford and XYZ transformations. By changing the apparent illumination of a photo, we excite the same LMS cone responses in the eye as the desired illuminant. Typically, we assume that this is possible with a diagonal scaling of the axes after a transformation from XYZ to a space that more resembles the LMS cone space. In other words, once we're in the right space, we simply need to divide out our estimated illuminant and apply our desired illuminant separately for each channel.
 In matrix form this is represented as: 
+
+![alt text](https://raw.githubusercontent.com/bajajahsaas/Detect-and-correct-color-cast/master/CastCorrection/cast-correction.png)
 
 The choice of the transformation matrix, MA is according to the transformation of Von Kries, Bradford and XYZ Scaling. 
 Our desired lighting is the D65 CIE standard illuminant, which represents spectrum of the sun at mid-day. This is the white point for the sRGB color space that most monitors are calibrated for. Hence values of XWD, YWD and ZWD will be constant for the desired lighting required.
